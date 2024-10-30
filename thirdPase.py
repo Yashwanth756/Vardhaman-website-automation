@@ -7,6 +7,8 @@ class OutputFormating:
             with open(str(i)+'.json', 'r') as f:
                 r=json.load(f)
                 data.update(r)
+        with open('unmodified.json', 'w') as f:
+            json.dump(data, f, indent=4)
         rollNo = data.keys()
         semList = data[list(rollNo)[0]].keys()
         self.fmtdata={}
@@ -23,8 +25,12 @@ class OutputFormating:
         self.semData(outputfile, semester)
         # print(nd)
     def semData(self,outputfile, semester=None):
-        print(type(semester))
+        # print(type(semester))
         semList=list(self.fmtdata.keys())
+        if semester ==None:
+            filename='results.xlsx'
+        else:
+            filename='results_'+str(semester)+'.xlsx'
         # print(semList)
         if semester == None:
             data=self.fmtdata[semList[-2]]
@@ -49,5 +55,6 @@ class OutputFormating:
         for ind, sub in enumerate(allSub):
             finalData[subjects[ind]]=sub
         print(finalData)
-        finalData.to_excel('Results.xlsx')
-# OutputFormating(3)
+        finalData.to_excel(filename)
+for i in range(1, 5):
+    OutputFormating(5,'formateddata', i)

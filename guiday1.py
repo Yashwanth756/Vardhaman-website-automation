@@ -197,7 +197,7 @@ def gatherData(fileName, sem, n_chunks):
 def process(filepath, fileName, sem, n_chunks=3):
     data = DataCollection(n_chunks, filepath).divdata
     DataProcessing(data, n_chunks)
-    OutputFormating(3, fileName, sem)
+    OutputFormating(n_chunks, fileName, sem)
     print(filepath, fileName, sem)
 
 if __name__=="__main__":
